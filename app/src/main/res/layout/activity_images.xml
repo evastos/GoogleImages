@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:paddingTop="@dimen/activity_vertical_margin"
+              tools:context=".ui.images.ImagesActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1">
+
+        <ProgressBar
+            android:id="@+id/activity_images_search_loading_view"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+
+        <com.evastos.googleimages.ui.views.LoadingGridView
+            android:id="@+id/activity_images_grid_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:horizontalSpacing="@dimen/grid_view_horizontal_spacing"
+            android:numColumns="3"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="@dimen/grid_view_vertical_spacing"/>
+
+        <TextView
+            android:id="@+id/activity_images_search_message_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:maxWidth="200dp"
+            android:textColor="@android:color/white"
+            android:visibility="gone"/>
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/activity_images_footer_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_images_footer_margin"
+        android:layout_marginTop="@dimen/activity_images_footer_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+        <ProgressBar
+            android:id="@+id/activity_images_loading_view"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="@dimen/grid_view_progress_bar_size"
+            android:layout_height="@dimen/grid_view_progress_bar_size"
+            android:layout_centerInParent="true"
+            android:indeterminateOnly="true"
+            android:visibility="invisible"
+            />
+
+        <include
+            layout="@layout/view_google_branding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

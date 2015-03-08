@@ -1,7 +1,6 @@
 package com.evastos.googleimages.ui.images;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,11 +21,11 @@ import java.util.List;
  */
 public class ImagesActivity extends Activity implements ImagesFinder.ImagesFinderListener, LoadingGridView.LoadingListener {
 
-    private static final String BUNDLE_SEARCH_QUERY = "search_query";
+    public static final String BUNDLE_SEARCH_QUERY = "search_query";
 
     private static final String BUNDLE_IMAGE_RESULTS = "image_results";
 
-    private String searchQuery;
+    private String searchQueryText;
 
     private View searchLoadingView;
 
@@ -39,18 +38,6 @@ public class ImagesActivity extends Activity implements ImagesFinder.ImagesFinde
     private ImagesFinder imagesFinder;
 
     private ImagesAdapter imagesAdapter;
-
-    /**
-     * Starts ImagesActivity with searchQuery as a Bundle parameter
-     *
-     * @param context
-     * @param searchQuery
-     */
-    public static void startImagesActivity(final Context context, final String searchQuery) {
-        Intent imagesIntent = new Intent(context, ImagesActivity.class);
-        imagesIntent.putExtra(BUNDLE_SEARCH_QUERY, searchQuery);
-        context.startActivity(imagesIntent);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +55,9 @@ public class ImagesActivity extends Activity implements ImagesFinder.ImagesFinde
         searchMessageTextView = (TextView) findViewById(R.id
                 .activity_images_search_message_text_view);
 
-        searchQuery = savedInstanceState != null ? savedInstanceState.getString
+        searchQueryText = savedInstanceState != null ? savedInstanceState.getString
                 (BUNDLE_SEARCH_QUERY, "") : "";
-        updateSearchQuery(searchQuery);
+        updateSearchQuery(searchQueryText);
 
         if (savedInstanceState == null) {
             handleIntent(getIntent());
@@ -118,24 +105,23 @@ public class ImagesActivity extends Activity implements ImagesFinder.ImagesFinde
         if (imagesAdapter != null) {
             outState.putSerializable(BUNDLE_IMAGE_RESULTS, (ArrayList) imagesAdapter.getImageResults());
         }
-        outState.putString(BUNDLE_SEARCH_QUERY, searchQuery);
+        outState.putString(BUNDLE_SEARCH_QUERY, searchQueryText);
         super.onSaveInstanceState(outState);
     }
 
     private void handleIntent(Intent intent) {
         Bundle extras = intent.getExtras();
         if (extras != null && extras.containsKey(BUNDLE_SEARCH_QUERY)) {
-            searchQuery = extras.getString(BUNDLE_SEARCH_QUERY);
-            updateSearchQuery(searchQuery);
+            searchQueryText = extras.getString(BUNDLE_SEARCH_QUERY);
+            updateSearchQuery(searchQueryText);
         }
+        setResult(RESULT_OK);
         startSearch();
     }
 
     private void updateSearchQuery(final String searchQuery) {
         imagesFinder.setSearchQuery(searchQuery);
-        StringBuilder subtitleBuilder = new StringBuilder();
-        subtitleBuilder.append('\"').append(searchQuery).append('\"');
-        getActionBar().setSubtitle(subtitleBuilder.toString());
+        getActionBar().setSubtitle('\"' + searchQuery + '\"');
     }
 
     private void startSearch() {

@@ -5,8 +5,11 @@
 
     <dimen name="grid_view_horizontal_spacing">3dp</dimen>
     <dimen name="grid_view_vertical_spacing">6dp</dimen>
-    <dimen name="grid_view_progress_bar_size">30dp</dimen>
+    <dimen name="grid_view_progress_bar_size">25dp</dimen>
 
-    <dimen name="activity_images_footer_margin">8dp</dimen>
-    <dimen name="text_view_loading_image_fail_size">12sp</dimen>
+    <dimen name="text_view_loading_image_failed_size">12sp</dimen>
+
+    <dimen name="list_view_item_search_history_padding">12dp</dimen>
+    <dimen name="list_view_item_search_history_text_view_size">14sp</dimen>
+    <dimen name="activity_footer_min_height">44dp</dimen>
 </resources>

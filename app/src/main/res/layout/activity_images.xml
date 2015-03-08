@@ -24,9 +24,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:horizontalSpacing="@dimen/grid_view_horizontal_spacing"
-            android:numColumns="3"
+            android:listSelector="@android:color/transparent"
+            android:numColumns="@integer/images_number_of_columns"
             android:stretchMode="columnWidth"
-            android:verticalSpacing="@dimen/grid_view_vertical_spacing"/>
+            android:verticalSpacing="@dimen/grid_view_vertical_spacing"
+            />
 
         <TextView
             android:id="@+id/activity_images_search_message_text_view"
@@ -44,8 +46,7 @@
         android:id="@+id/activity_images_footer_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_images_footer_margin"
-        android:layout_marginTop="@dimen/activity_images_footer_margin"
+        android:minHeight="@dimen/activity_footer_min_height"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin">
 
@@ -56,18 +57,14 @@
             android:layout_height="@dimen/grid_view_progress_bar_size"
             android:layout_centerInParent="true"
             android:indeterminateOnly="true"
-            android:visibility="invisible"
-            />
+            android:visibility="invisible"/>
 
         <include
             layout="@layout/view_google_branding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="@dimen/activity_vertical_margin"/>
-
+            android:layout_centerVertical="true"/>
     </RelativeLayout>
-
 
 </LinearLayout>

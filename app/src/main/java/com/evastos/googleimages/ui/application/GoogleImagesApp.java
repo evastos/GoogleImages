@@ -20,10 +20,10 @@ public class GoogleImagesApp extends Application {
     }
 
     private void initImageLoader() {
+        // Create global configuration and initialize ImageLoader with this config
         final DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
                 .cacheInMemory
                         (true).resetViewBeforeLoading(false).imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2).build();
-        // Create global configuration and initialize ImageLoader with this config
         final ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
                 .imageDownloader(new AuthImageDownloader(this))
                 .defaultDisplayImageOptions(displayImageOptions).build();

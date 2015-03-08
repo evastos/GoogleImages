@@ -45,6 +45,14 @@ public class ImagesAdapter extends ArrayAdapter<ImageResult> {
     }
 
     @Override
+    public ImageResult getItem(int position) {
+        if (imageResults == null || imageResults.size() <= position) {
+            return null;
+        }
+        return imageResults.get(position);
+    }
+
+    @Override
     public int getCount() {
         if (imageResults == null) {
             return 0;
@@ -53,45 +61,31 @@ public class ImagesAdapter extends ArrayAdapter<ImageResult> {
     }
 
     @Override
-    public ImageResult getItem(int position) {
-        if (position < imageResults.size()) {
-            return imageResults.get(position);
-        }
-        return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View view, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         ImageViewHolder holder;
-        if (view == null) {
+        if (convertView == null) {
             holder = new ImageViewHolder();
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context
                     .LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.grid_view_item_image, parent, false);
-            holder.imageView = (ImageView) view.findViewById(R.id.grid_view_item_image_view);
-            holder.failedToLoadTextView = (TextView) view.findViewById(R.id
+            convertView = inflater.inflate(R.layout.grid_view_item_image, parent, false);
+            holder.imageView = (ImageView) convertView.findViewById(R.id.grid_view_item_image_view);
+            holder.failedToLoadTextView = (TextView) convertView.findViewById(R.id
                     .grid_view_item_image_loading_failed_text_view);
             holder.failedToLoadTextView.setVisibility(View.GONE);
-            view.setTag(holder);
+            convertView.setTag(holder);
         } else {
-            holder = (ImageViewHolder) view.getTag();
+            holder = (ImageViewHolder) convertView.getTag();
         }
 
-        final ImageResult imageResult = getItem(position);
-        holder.onBind(imageResult);
-        return view;
+        holder.onBind(getItem(position));
+        return convertView;
     }
 
     class ImageViewHolder {
         ImageView imageView;
         TextView failedToLoadTextView;
 
-        void onBind(ImageResult imageResult) {
+        void onBind(final ImageResult imageResult) {
             imageLoader.cancelDisplayTask(imageView);
             imageView.setImageBitmap(null);
 

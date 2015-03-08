@@ -32,9 +32,11 @@ public class SearchFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        if (activity instanceof SearchActionListener) {
-            searchActionListener = (SearchActionListener) activity;
+        if (!(activity instanceof SearchActionListener)) {
+            throw new RuntimeException(HomeActivity.class.getSimpleName() + " must implement " +
+                    SearchActionListener.class.getSimpleName());
         }
+        searchActionListener = (SearchActionListener) activity;
     }
 
     @Override
@@ -46,9 +48,7 @@ public class SearchFragment extends Fragment {
         imagesSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                if (searchActionListener != null) {
-                    searchActionListener.onSearchSubmitted(s);
-                }
+                searchActionListener.onSearchSubmitted(s);
                 return false;
             }
 

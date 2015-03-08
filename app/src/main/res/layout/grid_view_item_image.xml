@@ -19,7 +19,7 @@
         android:padding="6dp"
         android:text="@string/image_loading_error"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/text_view_loading_image_fail_size"
+        android:textSize="@dimen/text_view_loading_image_failed_size"
         android:visibility="gone"/>
 
 </RelativeLayout>

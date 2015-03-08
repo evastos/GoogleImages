@@ -3,10 +3,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <ListView
+    <ExpandableListView
         android:id="@+id/fragment_home_search_history_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@null"/>
+        android:dividerHeight="1px"
+        android:groupIndicator="@null"
+        android:listSelector="@drawable/list_view_search_history_selector"/>
 
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package com.evastos.googleimages.utils;
 
+import android.util.Log;
+
 import org.apache.http.conn.util.InetAddressUtils;
 
 import java.net.InetAddress;
@@ -40,7 +42,8 @@ public class DeviceUtils {
                 }
             }
         } catch (Exception ex) {
-        } // for now eat exceptions
+            Log.e(DeviceUtils.class.getSimpleName(), ex.toString());
+        }
         return "";
     }
 }

@@ -24,6 +24,7 @@ import javax.net.ssl.X509TrustManager;
  * Created by Eva Stos on 7.3.2015..
  */
 public class AuthImageDownloader extends BaseImageDownloader {
+
     public static final String TAG = AuthImageDownloader.class.getName();
     // always verify the host - dont check for certificate
     final static HostnameVerifier DO_NOT_VERIFY = new HostnameVerifier() {

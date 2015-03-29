@@ -151,15 +151,6 @@ public class ImagesActivity extends Activity implements ImagesFinder.ImagesFinde
         imagesGridView.setLoading(false);
     }
 
-    private void displayMessage(final String message) {
-        searchMessageTextView.setVisibility(View.VISIBLE);
-        searchMessageTextView.setText(message);
-    }
-
-    private void hideMessage() {
-        searchMessageTextView.setVisibility(View.GONE);
-    }
-
     @Override
     public void onImagesFailed(ImagesFinder finder, ErrorResponse errorResponse) {
         final boolean isInitialSearch = imagesAdapter == null;
@@ -185,6 +176,15 @@ public class ImagesActivity extends Activity implements ImagesFinder.ImagesFinde
         showFooterLoadingView();
         imagesGridView.setLoading(true);
         imagesFinder.find();
+    }
+
+    private void displayMessage(final String message) {
+        searchMessageTextView.setVisibility(View.VISIBLE);
+        searchMessageTextView.setText(message);
+    }
+
+    private void hideMessage() {
+        searchMessageTextView.setVisibility(View.GONE);
     }
 
     private void showSearchLoadingView() {

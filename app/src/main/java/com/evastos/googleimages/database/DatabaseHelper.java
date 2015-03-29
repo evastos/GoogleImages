@@ -19,7 +19,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "google_images.db";
     private static final int DATABASE_VERSION = 1;
-    // Database creation sql statement
     private static final String DATABASE_CREATE = "create table "
             + TABLE_SEARCH_HISTORY + "(" + COLUMN_ID
             + " integer primary key autoincrement, " + COLUMN_SEARCH_QUERY

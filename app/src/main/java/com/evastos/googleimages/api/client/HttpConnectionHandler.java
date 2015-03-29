@@ -17,10 +17,34 @@ import java.nio.charset.Charset;
  */
 public class HttpConnectionHandler {
 
+    public class HttpResult {
+
+        private String resultString = "";
+
+        public HttpResult(String result, int responseCode) {
+            this.resultString = result;
+            this.responseCode = responseCode;
+        }
+
+        private int responseCode = HTTP_ERROR_UNKNOWN;
+
+        public String getResultString() {
+            return resultString;
+        }
+
+        public boolean isHttpOk() {
+            return responseCode == HttpURLConnection.HTTP_OK;
+        }
+    }
+
     private static final int CONNECTION_TIMEOUT = 30000;
+
     private int connectionTimeout = CONNECTION_TIMEOUT;
+
     private static final int SOCKET_TIMEOUT = 30000;
+
     private int socketTimeout = SOCKET_TIMEOUT;
+
     public static int HTTP_ERROR_UNKNOWN = -1;
 
     public HttpConnectionHandler() {
@@ -77,28 +101,6 @@ public class HttpConnectionHandler {
             exception.printStackTrace();
         }
         return new HttpResult("", HTTP_ERROR_UNKNOWN);
-    }
-
-    public class HttpResult {
-
-        private String resultString = "";
-
-        public HttpResult(String result, int responseCode) {
-            this.resultString = result;
-            this.responseCode = responseCode;
-        }
-
-        private int responseCode = HTTP_ERROR_UNKNOWN;
-
-        public String getResultString() {
-            return resultString;
-        }
-
-        public boolean isHttpOk() {
-            return responseCode == HttpURLConnection.HTTP_OK;
-        }
-
-
     }
 
 }
